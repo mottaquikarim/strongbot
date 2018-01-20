@@ -5,12 +5,10 @@ def hello_new_user():
     resp.message(
 '''
 🎉 🎈🎂 🍾 🎊 🍻 💃 
-Welcome to StrongBot, your very own, personal trainer bot.
+Welcome to StrongBot, your very own, digital personal-trainer.
 
-For more info, reply:
-   More or m 
-To get started, reply:
-    Get started, or gs
+To get started, reply with:
+    Start or s
 ''')
 
     return resp

@@ -19,7 +19,8 @@ def find_user(params):
 
     if not user_logs:
         u.create_row(
-            phonenumber=user_ph, 
+            phonenumber=user_ph,
+            fmt_time="0000-00-00 00:00"
         )
 
         return UserStatus.NEW_USER, u
