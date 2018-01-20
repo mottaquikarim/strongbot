@@ -1,2 +1,4 @@
 [run]
-omit = dev_app.py 
+omit =
+    dev_app.py 
+    bot/test/*
