@@ -8,6 +8,9 @@ before_script:
   - export COVERALLS_REPO_TOKEN=$COVERAGE_TOKEN
   - export AIRTABLE_API_KEY=$AIRTABLE_API_KEY
   - export AIRTABLE_BASE_KEY=$AIRTABLE_BASE_KEY
+  - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+  - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+  - export REGION=$REGION
 install:
   - npm install
   - pip install -r requirements.txt
