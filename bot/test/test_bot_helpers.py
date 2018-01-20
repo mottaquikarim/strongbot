@@ -4,7 +4,8 @@ from bot.models.airtable import Airtable
 from bot.bot_helpers import find_user, \
     parse_response, \
     get_airtable, \
-    get_meta
+    get_meta, \
+    get_info
 
 def test_find_user():
     a, b = find_user({})
@@ -18,6 +19,12 @@ def test_find_user():
     })
 
     assert a == UserStatus.NEW_USER
+
+    a, b = find_user({
+        'From': '+1XXXYYYZZZZ', 
+    })
+
+    assert a == UserStatus.EXISTING_USER
 
 def test_parse_response():
     pr = parse_response({})
@@ -37,3 +44,8 @@ def test_get_airtable():
 def test_get_meta():
    d = get_meta()
    assert d.get('records') is not None
+
+def test_get_info():
+    i = get_info()
+
+    assert isinstance(i, str)

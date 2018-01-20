@@ -1,6 +1,4 @@
-from enum import Enum
-
-class UserStatus(Enum):
+class UserStatus(object):
     NO_NUMBER = 1
     NEW_USER = 2
     EXISTING_USER = 3
