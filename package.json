@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "$(npm bin)/serverless deploy",
-    "test": "python -m pytest --cov=bot --cov-report html --cov-report term",
+    "test": "python -m pytest --cov=. --cov-report html --cov-report term",
     "write-coveralls": "rm -f .coveralls.yml && echo \"repo_token:$COVERAGE_TOKEN\" >> .coveralls.yml"
   },
   "author": "Mottaqui Karim",
