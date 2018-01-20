@@ -1,5 +1,8 @@
-.serverless/*
-node_modules/*
-.venv/*
 .cache/*
+.coverage
+.coverage/*
+.serverless/*
+.venv/*
+htmlcov/*
 package-lock.json
+node_modules/*

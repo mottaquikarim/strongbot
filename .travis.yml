@@ -3,8 +3,12 @@ node_js:
   - "8"
 python:
   - "3.6"
+before_script:
+  - export COVERAGE_TOKEN=$COVERAGE_TOKEN
 install:
   - npm install
   - sudo pip install -r requirements.txt
+  - sudo pip install -r test-requirements.txt
 script:
+  - npm run write-coveralls
   - npm run test
