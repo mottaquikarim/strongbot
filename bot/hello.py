@@ -10,6 +10,7 @@ logger.setLevel(logging.INFO)
 
 def handler(event, context):
     params = parse_body(event.get('body', ''))
+
     if params.get('AccountSid', None) != TWILIO_ACCOUNT_SID:
         return {
             'statusCode': 404,
@@ -17,14 +18,11 @@ def handler(event, context):
 
     resp = MessagingResponse()
     body = params.get('Body', '').lower()
-    if body == 'help':
-        resp.message('Welcome to StrongBot!')
-    else:
-        resp.message('Looking you up, fam...')
+    resp.message('Looking you up, fam...')
 
     return {
         'headers': {
-            'Content-Type': 'text/xml,'
+            'Content-Type': 'text/xml'
         },
         'statusCode': 200,
         'body': str(resp),
