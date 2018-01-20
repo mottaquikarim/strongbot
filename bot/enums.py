@@ -5,4 +5,4 @@ class UserStatus(object):
 
 class SupportedCmds(object):
     INFO = ['more', 'm']
-    GET_STARTED = ['get started', 'gs']
+    GET_STARTED = ['start', 's']
