@@ -6,7 +6,7 @@
   "scripts": {
     "deploy": "$(npm bin)/serverless deploy",
     "test": "python -m pytest --cov=. --cov-report html --cov-report term",
-    "write-coveralls": "rm -f .coveralls.yml && echo \"repo_token:$COVERAGE_TOKEN\" >> .coveralls.yml && cat .coveralls.yml && chmod 0777 .coveralls.yml"
+    "write-coveralls": "rm -f .coveralls.yml && echo \"repo_token: $COVERAGE_TOKEN\" >> .coveralls.yml && cat .coveralls.yml && chmod 0777 .coveralls.yml"
   },
   "author": "Mottaqui Karim",
   "license": "MIT",
