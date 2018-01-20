@@ -1,4 +1,4 @@
-language: node_js
+language: python 
 node_js:
   - "8"
 python:
@@ -6,10 +6,12 @@ python:
 before_script:
   - export COVERAGE_TOKEN=$COVERAGE_TOKEN
   - export COVERALLS_REPO_TOKEN=$COVERAGE_TOKEN
+  - export AIRTABLE_API_KEY=$AIRTABLE_API_KEY
+  - export AIRTABLE_BASE_KEY=$AIRTABLE_BASE_KEY
 install:
   - npm install
-  - sudo pip install -r requirements.txt
-  - sudo pip install -r requirements-test.txt
+  - pip install -r requirements.txt
+  - pip install -r requirements-test.txt
   - cp ./bot/config.sample.py ./bot/config.py
 script:
   - npm run test

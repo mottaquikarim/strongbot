@@ -19,7 +19,7 @@
     "_kill_python": "ps -ef | grep python | grep -v grep | awk '{print $2}' | xargs kill",
     "_kill_localtunnel": "ps -ef | grep lt | grep -v grep | awk '{print $2}' | xargs kill",
     "_localtunnel": "$(npm bin)/lt --port 5000 &",
-    "deploy": "$(npm bin)/serverless deploy",
+    "deploy": "npm test && $(npm bin)/serverless deploy",
     "local-dev": "npm run _dev && sleep 5 && npm run _localtunnel",
     "local-kill": "npm run _kill_python && npm run _kill_localtunnel",
     "test": "python -m pytest --cov=. --cov-report html --cov-report term",
