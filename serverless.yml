@@ -1,0 +1,25 @@
+service: strongbot
+
+plugins:
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  runtime: python3.6
+  memorySize: 512
+  timeout: 60
+  stage: dev
+  region: us-east-1
+
+package:
+  exclude:
+    - .venv/**
+    - venv/**
+
+functions:
+  hello:
+    handler: bot/hello.handler
+    events:
+      - http:
+          path: bot
+          method: post

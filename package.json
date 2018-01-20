@@ -1,0 +1,16 @@
+{
+  "name": "strongbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "python -m pytest",
+    "deploy": "$(npm bin)/serverless deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless": "^1.25.0",
+    "serverless-python-requirements": "^3.3.0"
+  }
+}
