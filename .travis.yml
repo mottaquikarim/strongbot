@@ -13,3 +13,5 @@ install:
 script:
   - npm run write-coveralls
   - npm run test
+after_success:
+  - coveralls
