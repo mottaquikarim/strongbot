@@ -3,15 +3,35 @@
   "version": "1.0.0",
   "description": "chatbot workout companion",
   "main": "index.js",
+  "scriptsComments": {
+    "_dev": "Locally run flask app for twilio -> bot development",
+    "_kill_python": "Kill background python processes, like the flask devel app",
+    "_kill_localtunnel": "Kill localtunnel process",
+    "_localtunnel": "Punch port into firewall for outside access",
+    "deploy": "Deploy bot source code to AWS Lambda.",
+    "local-dev": "Locally devel flask app",
+    "local-kill": "Clean up local devel env",
+    "test": "Run tests with terminal and html coverage reports generated",
+    "write-coveralls": "Push test coverage metrics to coverals, used by CI"
+  },
   "scripts": {
+    "_dev": "python dev_app.py &",
+    "_kill_python": "ps -ef | grep python | grep -v grep | awk '{print $2}' | xargs kill",
+    "_kill_localtunnel": "ps -ef | grep lt | grep -v grep | awk '{print $2}' | xargs kill",
+    "_localtunnel": "$(npm bin)/lt --port 5000 &",
     "deploy": "$(npm bin)/serverless deploy",
+    "local-dev": "npm run _dev && sleep 5 && npm run _localtunnel",
+    "local-kill": "npm run _kill_python && npm run _kill_localtunnel",
     "test": "python -m pytest --cov=. --cov-report html --cov-report term",
-    "write-coveralls": "rm -f .coveralls.yml && echo \"repo_token: $COVERAGE_TOKEN\" >> .coveralls.yml && cat .coveralls.yml && chmod 0777 .coveralls.yml"
+    "write-coveralls": "rm -f .coveralls.yml && echo \"repo_token: $COVERAGE_TOKEN\" >> .coveralls.yml"
   },
   "author": "Mottaqui Karim",
   "license": "MIT",
   "dependencies": {
     "serverless": "^1.25.0",
     "serverless-python-requirements": "^3.3.0"
+  },
+  "devDependencies": {
+    "localtunnel": "^1.8.3"
   }
 }
