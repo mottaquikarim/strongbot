@@ -10,8 +10,8 @@ before_script:
   - export AIRTABLE_BASE_KEY=$AIRTABLE_BASE_KEY
 install:
   - npm install
-  - sudo pip install -r requirements.txt
-  - sudo pip install -r requirements-test.txt
+  - pip install -r requirements.txt
+  - pip install -r requirements-test.txt
   - cp ./bot/config.sample.py ./bot/config.py
 script:
   - npm run test
