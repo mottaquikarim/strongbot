@@ -1,32 +1,41 @@
 from bot.models.user import User, fmt_time
 from datetime import datetime
 import unittest
+from unittest.mock import patch
 
 class TestUser(unittest.TestCase):
-    def test_init(self):
+    @patch('boto3.resource')
+    def test_init(self, Boto3Resource):
+        test_user = User()
+        Boto3Resource.assert_called()
+
+    @patch('boto3.resource')
+    def test_create_row(self, Boto3Resource):
+        #Boto3Resource.Table.put_item.return_value = True
+
         test_user = User()
 
-        assert test_user.dynamodb is not None
-        assert test_user.table is not None
-
-    def test_create_row(self):
-        test_user = User()
+        test_user.table.put_item.side_effect = lambda *a, **kw: 'MOCKED' 
 
         now = datetime.now()
         u = test_user.create_row(phonenumber='XXX', fmt_time=now.strftime('%Y-%m-%d %H:%M'))
 
-        rows = test_user.search_by_number(phonenumber='XXX')
-        assert rows is not None
-        assert len(rows) > 0
+        assert u == 'MOCKED'
+        test_user.table.put_item.assert_called_once()
 
         u = test_user.create_row()
         assert u is None
 
-    def test_search_by_number(self):
+    @patch('boto3.resource')
+    def test_search_by_number(self, Boto3Resource):
         test_user = User()
+        test_user.table.query.side_effect = lambda *a, **kw: {
+            'Items': ['MOCKED']
+        }
 
         u = test_user.search_by_number()
-        assert len(u) == 0
+        assert u == [] 
 
         u = test_user.search_by_number(phonenumber='XXXXXX')
-        assert len(u) == 0
+        assert u == ['MOCKED']
+        test_user.table.query.assert_called_once()

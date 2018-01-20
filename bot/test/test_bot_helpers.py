@@ -1,24 +1,33 @@
 from bot.enums import UserStatus
 from bot.models.airtable import Airtable
-
 from bot.bot_helpers import find_user, \
     parse_response, \
     get_airtable, \
     get_meta, \
     get_info
+from bot.models.user import User
+from unittest.mock import patch
 
-def test_find_user():
+@patch('boto3.resource')
+@patch.object(User, 'search_by_number')
+@patch.object(User, 'create_row')
+def test_find_user(create_row, search_by_number, Boto3Resource):
+    search_by_number.return_value = False
+    create_row.return_value = True
+
     a, b = find_user({})
-
     assert a == UserStatus.NO_NUMBER
     assert b is None
-
 
     a, b = find_user({
         'From': '+1XXXYYYZZZZ', 
     })
 
     assert a == UserStatus.NEW_USER
+
+@patch.object(User, 'search_by_number')
+def test_find_existing_user(search_by_number):
+    search_by_number.return_value = True 
 
     a, b = find_user({
         'From': '+1XXXYYYZZZZ', 
