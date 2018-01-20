@@ -25,8 +25,9 @@ def test_find_user(create_row, search_by_number, Boto3Resource):
 
     assert a == UserStatus.NEW_USER
 
+@patch('boto3.resource')
 @patch.object(User, 'search_by_number')
-def test_find_existing_user(search_by_number):
+def test_find_existing_user(search_by_number, Boto3Resource):
     search_by_number.return_value = True 
 
     a, b = find_user({
