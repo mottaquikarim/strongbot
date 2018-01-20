@@ -11,7 +11,7 @@ install:
   - sudo pip install -r test-requirements.txt
   - cp ./bot/config.sample.py ./bot/config.py
 script:
-  - npm run write-coveralls
   - npm run test
 after_success:
+  - npm run write-coveralls
   - coveralls

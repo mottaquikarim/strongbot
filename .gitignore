@@ -1,4 +1,5 @@
 .cache/*
+.coveralls.yml
 .coverage
 .coverage/*
 .serverless/*
